@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {useToggle} from "../customHooks/useToggle";
 
-const BooleanStaty = () => {
+const BooleanStaty: FC<any> = () => {
     let [toggle,otherToggle] = useToggle(true)
     // const btn = () => {
     //
@@ -10,7 +10,7 @@ const BooleanStaty = () => {
     return (
         <div>
             {
-
+                <h1>h1</h1>
             }
         </div>
     );
