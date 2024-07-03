@@ -3,16 +3,14 @@ import {useToggle} from "../customHooks/useToggle";
 
 const BooleanStaty = () => {
     let [toggle,otherToggle] = useToggle(true)
-    const btn = () => {
-        
-    }
-
+    // const btn = () => {
+    //
+    // }
+    console.log(toggle)
     return (
         <div>
             {
-                <div>
-                    <button onClick={}></button>
-                </div>
+
             }
         </div>
     );
