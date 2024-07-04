@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import booleanStaty from "./component/booleanStaty";
+import ComponentBooleanState from "./component/ComponentBooleanState";
 
 
 
@@ -9,6 +9,9 @@ import booleanStaty from "./component/booleanStaty";
 const App = () => {
   return (
     <div>
+      {
+        <ComponentBooleanState/>
+      }
 
     </div>
   );

@@ -8,7 +8,7 @@ import { useState } from "react"
 
 
 
-export const useToggle = (bool: boolean) => {
+export const useToggle = (bool: boolean):[boolean, () => void ] => {
     const [toggle, setToggle] = useState(bool)
     const handleToggle = () => setToggle(prevState => !prevState)
     return [toggle, handleToggle]
