@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import UsersComponent from "./components/UsersComponent";
 
 // Виконуємо класовими компонентами
 // https://dummyjson.com/docs/users
@@ -11,7 +12,7 @@ import './App.css';
 const App = () => {
   return (
     <div>
-
+      <UsersComponent/>
     </div>
   );
 }
