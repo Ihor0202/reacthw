@@ -25,6 +25,7 @@ const getFromUsers = async ():Promise<IUser[]> => {
         .then((value) => {
             // console.log(value)
             return  value.data})
+
 }
 
 const getPostOfUsersById = async (id:number):Promise<IUser[]> => {
