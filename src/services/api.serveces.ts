@@ -1,4 +1,5 @@
 import axios from "axios";
+import {IUser} from "../model/IUser";
 
 
 
@@ -19,14 +20,14 @@ let axiosInstal = axios.create({
     headers: {'Content-Type': 'application/json'}
 })
 
-const getFromUsers = async () => {
+const getFromUsers = async ():Promise<IUser[]> => {
     return await axiosInstal.get('/users')
         .then((value) => {
             // console.log(value)
             return  value.data})
 }
 
-const getPostOfUsersById = async (id:number) => {
+const getPostOfUsersById = async (id:number):Promise<IUser[]> => {
     return await axiosInstal.get('/posts/user/' + id).then((value) => {
         return value.data
     })
