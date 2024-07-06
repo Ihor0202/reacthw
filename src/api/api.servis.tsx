@@ -12,6 +12,7 @@ const servisUsers = {
         return axiosResponse.data
     },
 
+
     // getOneUser: async (id: number) => {
     //     let axiosResponse = await axiosInstance.get(Url.users.oneUser(id))
     //     // return axiosResponse
