@@ -1,20 +1,38 @@
 import React, {Component} from 'react';
 import {IUser} from "../model/IUser";
 import {servisUsers} from "../api/api.servis";
+import UserComponent from "./UserComponent";
+import {IPosts} from "../model/IPosts";
+import PostsComponent from "./PostsComponent";
 
 type StateType = {
     users: IUser[]
+    posts:IPosts[]
+
 }
+// type PostType = {
+//     posts:IPosts[]
+// }
 class UsersComponent extends Component<{},StateType> {
     state: StateType = {
-        users: []
+        users: [],
+        posts: []
 }
+
 
     componentDidMount() {
         servisUsers.getAll().then(value => {
-            this.setState({users: [...value.users]})
+            this.setState( {...this.state, users: [...value.users]})
             console.log(value)
 
+        })
+    }
+
+    getPosts = (id:number) => {
+        servisUsers.getPosts(id).then(posts => {
+            this.setState( {...this.state, posts: [...posts.posts]})
+
+            console.log(posts)
         })
     }
 
@@ -22,10 +40,10 @@ class UsersComponent extends Component<{},StateType> {
         return (
             <div>
                 {
-                    this.state.users.map(user => <h4 key={user.id}>{user.id}: {user.lastName}</h4>)
+                    this.state.users.map(user => <UserComponent key={user.id} user={user} getPost={this.getPosts}/>)
                 }
                 {
-
+                    this.state.posts.map(posts => <PostsComponent key={posts.id} posts={posts}/>)
                 }
             </div>
         );
