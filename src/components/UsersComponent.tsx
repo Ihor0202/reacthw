@@ -22,7 +22,7 @@ class UsersComponent extends Component<{},StateType> {
 
     componentDidMount() {
         servisUsers.getAll().then(value => {
-            this.setState( {...this.state, users: [...value.users]})
+            this.setState( {...this.state, users: [...value]})
             console.log(value)
 
         })
@@ -30,7 +30,7 @@ class UsersComponent extends Component<{},StateType> {
 
     getPosts = (id:number) => {
         servisUsers.getPosts(id).then(posts => {
-            this.setState( {...this.state, posts: [...posts.posts]})
+            this.setState( {...this.state, posts: [...posts]})
 
             console.log(posts)
         })

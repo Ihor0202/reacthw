@@ -1,5 +1,7 @@
 import axios from "axios";
 import {Url} from "../const/url";
+import {IUser} from "../model/IUser";
+import {IPosts} from "../model/IPosts";
 
 const axiosInstance = axios.create({
     baseURL: 'https://dummyjson.com',
@@ -7,26 +9,20 @@ const axiosInstance = axios.create({
 });
 
 const servisUsers = {
-    getAll: async () => {
+    getAll: async ():Promise<IUser[]> => {
         let axiosResponse = await axiosInstance.get(Url.users.all);
-        return axiosResponse.data
+        return axiosResponse.data.users
     },
-
 
     // getOneUser: async (id: number) => {
     //     let axiosResponse = await axiosInstance.get(Url.users.oneUser(id))
     //     // return axiosResponse
     // },
 
-    getPosts: async (id:number) => {
+    getPosts: async (id:number):Promise<IPosts[]> => {
       let  axiosResponse = await axiosInstance.get(Url.users.posts(id))
-        return axiosResponse.data
+        return axiosResponse.data.posts
     }
 }
 
-// const servisUser = {
-//     getOneUser: async (id) => {
-//         let axiosResponse = await axiosInstance.get(Url.users.oneUser(id))
-//     }
-// }
 export {servisUsers}
