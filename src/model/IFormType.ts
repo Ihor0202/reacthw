@@ -1,6 +1,6 @@
 
 export interface IFormType{
-    username:string
-    password:string
-    age?:number
+    id: number
+    title:string
+    body:string
 }

@@ -15,7 +15,7 @@ const FormComponent = () => {
 
 
 
-    let {formState: {isValid}, register,handleSubmit} = useForm<IFormType>({
+    let {formState: {isValid,errors}, register,handleSubmit} = useForm<IFormType>({
         mode: "all",
         resolver: joiResolver(userValidator)
     })
@@ -27,20 +27,24 @@ const FormComponent = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                title: data.username,
-                body: data.password,
+                id: data.id,
+                title: data.title,
+                body: data.body,
             }),
         })
             .then(response => response.json())
             .then(json => console.log(json))
     };
 
-    console.log(isValid)
     return (
         <div>
             <form onSubmit={handleSubmit(FormSubmitCustomHandler)}>
-                <input type={"text"} {...register("username")}/>
-                <input type={"text"} {...register("password")}/>
+                {errors.id && <div>{errors.id.message}</div>}
+                <input type={"number"} {...register("id")}/>
+                {errors.title && <div>{errors.title.message}</div>}
+                <input type={"text"} {...register("title")}/>
+                {errors.body && <div>{errors.body.message}</div>}
+                <input type={"text"} {...register("body")}/>
                 <button disabled={!isValid}>button</button>
             </form>
         </div>

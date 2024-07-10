@@ -2,10 +2,14 @@ import Joi from "joi";
 
 export const userValidator =
     Joi.object({
-        username: Joi.string().required().messages({
-            'string.empty': 'Username is required',
+        id: Joi.number().required().min(1)
+            .messages({
+            'number.empty': 'id is required',
         }),
-        password: Joi.string().required().messages({
-            'string.empty': 'Password is required',
+        title: Joi.string().required().messages({
+            'string.empty': 'title is required',
+        }),
+        body: Joi.string().required().messages({
+            'string.empty': 'body is required',
         }),
 })
