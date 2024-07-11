@@ -2,7 +2,7 @@ import Joi from "joi";
 
 export const userValidator =
     Joi.object({
-        id: Joi.number().required().min(1)
+        userId: Joi.number().required().min(1)
             .messages({
             'number.empty': 'id is required',
         }),

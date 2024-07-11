@@ -27,7 +27,7 @@ const FormComponent = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                id: data.id,
+                userId: data.userId,
                 title: data.title,
                 body: data.body,
             }),
@@ -39,8 +39,8 @@ const FormComponent = () => {
     return (
         <div>
             <form onSubmit={handleSubmit(FormSubmitCustomHandler)}>
-                {errors.id && <div>{errors.id.message}</div>}
-                <input type={"number"} {...register("id")}/>
+                {errors.userId && <div>{errors.userId.message}</div>}
+                <input type={"number"} {...register("userId")}/>
                 {errors.title && <div>{errors.title.message}</div>}
                 <input type={"text"} {...register("title")}/>
                 {errors.body && <div>{errors.body.message}</div>}
