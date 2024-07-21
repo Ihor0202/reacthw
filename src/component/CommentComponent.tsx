@@ -14,6 +14,7 @@ const CommentComponent: FC<IProps> = ({comment}) => {
             <h3>name: {comment.name}</h3>
             <h3>email: {comment.email}</h3>
             <h4>body: {comment.body}</h4>
+            <hr/>
             </div>
     );
 };
