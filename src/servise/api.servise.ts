@@ -16,12 +16,12 @@ let getUsers = async ():Promise<IUsers[]> => {
     })
 }
 let getPosts = async ():Promise<IPosts[]> => {
-    return axiosInstans.get('/posts').then(post => {
+    return axiosInstans.get('posts').then(post => {
         return post.data
     })
 }
 let getUserPosts = async (userId:string):Promise<IPosts[]> => {
-    return axiosInstans.get(`/users/${userId}/posts`).then(post => {
+    return axiosInstans.get(`user/${userId}/posts`).then(post => {
         return post.data
     })
 }
