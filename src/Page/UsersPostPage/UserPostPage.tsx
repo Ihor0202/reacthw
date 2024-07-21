@@ -6,15 +6,15 @@ import PostCommentsComponent from "../../component/PostCommentsComponent";
 
 const UserPostPage = () => {
 
-    let id = useParams()
+    let {id} = useParams()
     const [userPost, setUserPost] = useState<IPosts[]>([])
 
-
+    console.log(id)
    useEffect(() => {
        if (id) {
            getUserPosts(id.toString()).then(posts => {
                setUserPost([...posts])
-               console.log(userPost)
+               console.log(posts)
            })
            console.log(id)
        }

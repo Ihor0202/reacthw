@@ -1,24 +1,28 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import {getPostComments} from "../../servise/api.servise";
+import {IComments} from "../../model/IComments";
+import CommentComponent from "../../component/CommentComponent";
 
 const PostCommentsPage = () => {
 
 
-    let {id} = useParams()
-    const [comments, setComments] = useState()
+    let {postId} = useParams()
+    const [comments, setComments] = useState<IComments[]>([])
 
-    console.log(id)
+    console.log(postId)
 useEffect(()=> {
-    if (id)
-    getPostComments(id).then(coments => {
-        console.log(coments)
-    })
-},[id])
+    if (postId) {
+        getPostComments(postId).then(comments => {
+            setComments(comments)
+        })
+}
+
+},[postId])
 
     return (
         <div>
-
+            {comments.map(comments => <CommentComponent key={comments.id} comment={comments}/>)}
         </div>
     );
 };
