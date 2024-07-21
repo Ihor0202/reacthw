@@ -20,10 +20,23 @@ let getPosts = async ():Promise<IPosts[]> => {
         return post.data
     })
 }
+let getUserPosts = async (userId:string):Promise<IPosts[]> => {
+    return axiosInstans.get(`/users/${userId}/posts`).then(post => {
+        return post.data
+    })
+}
+
 
 let getComments = async ():Promise<IComments[]> => {
-    return axiosInstans.get('/comments').then(comments => {
+    return axiosInstans.get('comments').then(comments => {
         return comments.data
     })
 }
-export {getUsers, getPosts, getComments}
+
+let getPostComments = async (postId:string):Promise<IComments[]> => {
+
+    return axiosInstans.get(`/posts/${postId}/comments`).then(comments => {
+        return comments.data
+    })
+}
+export {getUsers, getPosts, getUserPosts, getComments, getPostComments}

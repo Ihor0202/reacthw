@@ -1,23 +1,30 @@
 import React, {useEffect, useState} from 'react';
-import {getPosts} from "../../servise/api.servise";
+import {getUserPosts} from "../../servise/api.servise";
 import {IPosts} from "../../model/IPosts";
-import PostComponent from "../../component/PostComponent";
 import {useParams} from "react-router-dom";
+import PostCommentsComponent from "../../component/PostCommentsComponent";
 
 const UserPostPage = () => {
 
 
-    let {parems} = useParams()
-
+    let id = useParams()
     const [userPost, setUserPost] = useState<IPosts[]>([])
+
    useEffect(() => {
-       getPosts().then(posts => {
-           setUserPost(posts)
-       })
-   })
+       if (id) {
+           getUserPosts(id.toString()).then(posts => {
+               setUserPost(posts)
+           })
+           console.log(id)
+       }
+   }, [id])
+
+
+
     return (
         <div>
-            {userPost.map(post => <PostComponent key={post.id} post={post}/>)}
+            {userPost.map(post => <PostCommentsComponent key={post.id} post={post}/>)}
+            <hr/>
         </div>
     );
 };
