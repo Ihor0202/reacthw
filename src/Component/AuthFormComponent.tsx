@@ -1,7 +1,7 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
 import {IUser} from "../model/IUser";
-import {authService} from "../api/api.servise";
+import {authService} from "../servise/api.servise";
 import {ITokenObtainPair} from "../model/ITokenObtainPair";
 
 const AuthFormComponent = () => {
@@ -14,7 +14,8 @@ const AuthFormComponent = () => {
     });
     let authenticate = (date: ITokenObtainPair) => {
         let promise = authService.authenticate(date)
-        // console.log(promise)
+        console.log(promise)
+        console.log('.')
 
 
     }

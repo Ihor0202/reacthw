@@ -1,7 +1,7 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
 import {IUser} from "../model/IUser";
-import {userService} from "../api/api.servise";
+import {userService} from "../servise/api.servise";
 
 const RegFormComponent = () => {
     let {handleSubmit, register} = useForm<IUser>()
