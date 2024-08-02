@@ -41,12 +41,10 @@ let authService = {
 }
 
 let carsService = {
-    getCars: async ()  => {
-        let response = await axiosInstance.get<ICarPaginated>('/cars')
+    getCars: async (page:string = '1')  => {
+        let response = await axiosInstance.get<ICarPaginated>('/cars', {params: {page:page}})
 
-        let data = response.data;
-        console.log(data)
-        return data
+        return  response.data
 }
 }
 

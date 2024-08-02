@@ -7,7 +7,7 @@ type IProps = {
 const CarsComponent: FC<IProps> =  ({cars}) => {
     return (
         <div>
-            {cars.map(car => <div key={car.id}>{car.brand}: {car.price}</div>)}
+            {cars.map(car => <div key={car.id}>{car.id}-{car.brand}: {car.price}</div>)}
         </div>
     );
 };
