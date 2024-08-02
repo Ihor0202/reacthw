@@ -13,10 +13,10 @@ let axiosInstance = axios.create({
 })
 axiosInstance.interceptors.request.use(value => {
 
+    if (localStorage.getItem('tokenPair') && (value.url !== '/auth' && value.url !== '/auth/refresh') ) {
+        value.headers.set('Authorization', 'Bearer ' + helpRetrive<ITokenRefresh>('tokenPair').access)
 
-    value.headers.set('Authorization', 'Bearer ' + helpRetrive<ITokenRefresh>('tokenPair').access)
-    // value.headers.set("Authorization", 'xxxxxx')
-    // console.log(value)
+    }
     return value
 })
 let userService =  {
@@ -30,10 +30,12 @@ let userService =  {
 let authService = {
     authenticate: async (date: ITokenObtainPair) => {
         let response = await axiosInstance.post<ITokenRefresh>('/auth', date)
-        // return response
         console.log(response.data)
-        // console.log(response.data.refresh)
-        // console.log(response.data.access)
+        localStorage.setItem('tokenPair', JSON.stringify(response.data))
+    },
+    refresh: async (): Promise<void> => {
+        let refreshToken = helpRetrive<ITokenRefresh>('tokenPair').refresh
+        let response = await axiosInstance.post('/auth/refresh', {refresh: refreshToken})
         localStorage.setItem('tokenPair', JSON.stringify(response.data))
     }
 }
@@ -43,6 +45,7 @@ let carsService = {
         let response = await axiosInstance.get<ICarPaginated>('/cars')
 
         let data = response.data;
+        console.log(data)
         return data
 }
 }

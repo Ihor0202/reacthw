@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {carsService} from "../servise/api.servise";
+import {authService, carsService} from "../servise/api.servise";
 import {AxiosError} from "axios";
 import {ICarPaginated} from "../model/ICarPaginated";
 import CarsComponent from "../Component/CarsComponent";
+import {useNavigate} from "react-router-dom";
 
 const CarsPage = () => {
     const [carPaginationObject, setCarPaginationObject] = useState<ICarPaginated>({
@@ -12,8 +13,9 @@ const CarsPage = () => {
         next: null,
         items: []
     })
-    useEffect(() => {
+    let navigate = useNavigate()
 
+    useEffect(() => {
         const getCarsData = async () => {
             try {
                 let response = await carsService.getCars()
@@ -24,6 +26,12 @@ const CarsPage = () => {
                 let axiosError = e as AxiosError
                 if (axiosError && axiosError?.response?.status === 401){
                     console.log(axiosError);
+                    try {
+                       await authService.refresh()
+                    } catch (e) {
+                        return navigate('/')
+
+                    }
 
                 }
             }
