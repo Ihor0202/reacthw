@@ -1,51 +1,7 @@
-import {configureStore, createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {IUsers} from "../model/IUsers";
-import {getUsers} from "../servise/api.servise";
-import axios, {AxiosError} from "axios";
+import {configureStore} from "@reduxjs/toolkit";
+
 import {useDispatch, useSelector} from "react-redux";
-
-type userSliceType = {
-    user: IUsers[]
-    isLoaded: boolean
-}
-
-let userInitState: userSliceType = {
-    user: [],
-    isLoaded: false
-}
-
-let loadUsers = createAsyncThunk(
-    'createSlice/loadUsers',
-         async (_, thunkAPI)=> {
-           try {
-               let response = await getUsers()
-               return  thunkAPI.rejectWithValue(response)
-
-           }catch (e) {
-               e as AxiosError
-               return  thunkAPI.rejectWithValue(e)
-           }
-        }
-
-)
-
-let userSlice = createSlice({
-    name: 'userSlice1',
-    initialState: userInitState,
-    reducers: {},
-    extraReducers: builder => {
-        builder.addCase(loadUsers.fulfilled, (state,action) => {
-            state.user = action.payload
-        })
-    }
-})
-
-
-const useActions = {
-    ...userSlice.actions,
-    loadUsers
-
-}
+import {userSlice} from "./slices/userSlice";
 
 export const store = configureStore({
     reducer:{
@@ -53,26 +9,8 @@ export const store = configureStore({
 
     }
 })
-export const useAppSelector = useSelector.withTypes<Ret
-    // <typeof store.getState>
-export const useAppDispatch = useDispatch.withTypes<R
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export const useAppSelector = useSelector.withTypes<ReturnType<typeof store.getState>>()
+export const useAppDispatch = useDispatch.withTypes<typeof store.dispatch>()
 
 
 
