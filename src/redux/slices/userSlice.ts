@@ -1,7 +1,6 @@
 import {IUsers} from "../../model/IUsers";
 import {createSlice, isFulfilled} from "@reduxjs/toolkit";
-
-import {loadUsers} from "../reducers/user.exxtre.reducers";
+import {loadUsers} from "../reducers/user.extre.reducers";
 
 type userSliceType = {
     users: IUsers[]

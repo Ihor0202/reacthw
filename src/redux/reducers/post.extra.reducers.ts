@@ -1,15 +1,17 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {getUsers} from "../../servise/api.servise";
+import {getPosts} from "../../servise/api.servise";
 import {AxiosError} from "axios";
 
-export const loadUsers = createAsyncThunk(
-    'userSlice/loadUsers',
+export const loadPosts = createAsyncThunk(
+    'postSlice/loadPosts',
     async (_, thunkAPI) => {
         try {
-            let response = await getUsers()
+            let response = await getPosts()
+            console.log('yes')
             return thunkAPI.fulfillWithValue(response)
         } catch (e) {
             let e1 = e as AxiosError
+            console.log('error')
             return thunkAPI.rejectWithValue(e1)
         }
     }
