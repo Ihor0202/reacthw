@@ -15,6 +15,7 @@ useEffect(()=> {
     if (postId) {
         getPostComments(postId).then(comments => {
             setComments(comments)
+
         })
 }
 
