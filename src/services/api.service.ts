@@ -1,5 +1,5 @@
 import axios from "axios";
-import {baseUrl, urls} from "../constents/urls";
+import {baseUrl, urls} from "./constents/urls";
 import {IUser} from "../model/IUsers";
 import {IPost} from "../model/IPost";
 
