@@ -9,6 +9,7 @@ import PostPage from "../pages/PostPage";
 export let router = createBrowserRouter([{
     path: '/', element: <MainLayout/>,
     children: [
+
         {index: true, element: <HomePage/>},
         {path: 'users', element: <UsersPage/>},
         {path: 'posts', element: <PostsPage/>},
