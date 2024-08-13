@@ -5,6 +5,7 @@ import {ICarPaginated} from "../model/ICarPaginated";
 import CarsComponent from "../Component/CarsComponent";
 
 const CarsPage = () => {
+
     const [carPaginationObject, setCarPaginationObject] = useState<ICarPaginated>({
         total_items: 0,
         total_pages: 0,
