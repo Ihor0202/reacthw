@@ -5,6 +5,7 @@ import AuthPage from "../Page/AuthPage";
 import CarsPage from "../Page/CarsPage";
 import React from "react";
 
+
 export const router = createBrowserRouter([
     {path: '/', element: <MainLayout/>,
         children: [
